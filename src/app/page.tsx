@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Search, Printer, Building2, Users, ShieldCheck, GraduationCap } from 'lucide-react';
+import { Search, Printer, Building2, Users, ShieldCheck } from 'lucide-react';
 
 interface StudentRecord {
   'Sr No': number;
@@ -52,7 +52,20 @@ export default function PTMHome() {
   };
 
   const handlePrint = () => {
+    const originalTitle = document.title;
+    
+    // Set the browser tab title to the Father's CNIC so the PDF save prompt pre-populates it
+    if (parentInfo?.fatherCnic) {
+      const cleanCnic = parentInfo.fatherCnic.replace(/\s+/g, '_');
+      document.title = `PTM_Pass_${cleanCnic}`;
+    }
+
     window.print();
+
+    // Restore original title after print dialog closes
+    setTimeout(() => {
+      document.title = originalTitle;
+    }, 1000);
   };
 
   return (
@@ -169,7 +182,7 @@ export default function PTMHome() {
                     onClick={handlePrint}
                     className="w-full sm:w-auto bg-[#F37021] hover:bg-orange-600 text-white px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <Printer className="w-4 h-4" /> Print Visitor Pass
+                    <Printer className="w-4 h-4" /> Print / Save PDF Pass
                   </button>
                 </div>
 
