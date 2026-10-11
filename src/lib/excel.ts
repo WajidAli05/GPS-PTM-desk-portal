@@ -14,10 +14,14 @@ export interface StudentRecord {
 }
 
 export function getStudentsData(): StudentRecord[] {
+  // Uses process.cwd() to locate the file reliably in Vercel serverless environments
   const filePath = path.join(process.cwd(), 'data', 'students_report.xlsx');
+  
   if (!fs.existsSync(filePath)) {
+    console.error("Excel file not found at:", filePath);
     return [];
   }
+
   const fileBuffer = fs.readFileSync(filePath);
   const workbook = XLSX.read(fileBuffer, { type: 'buffer' });
   const sheetName = workbook.SheetNames[0];
