@@ -63,7 +63,7 @@ export default function PTMHome() {
           <div className="flex items-center gap-3 w-full sm:w-auto">
             <div className="bg-white p-1 rounded-xl shadow-md border-2 border-[#F37021] shrink-0">
               <Image
-                src="/logo.png"
+                src="/logo.jpg"
                 alt="Ghazali Premier Schools Logo"
                 width={48}
                 height={48}
@@ -181,7 +181,7 @@ export default function PTMHome() {
                       <div className="flex items-center gap-3">
                         <div className="bg-white p-1.5 rounded-xl shadow-inner border border-slate-200 shrink-0">
                           <Image
-                            src="/logo.png"
+                            src="/logo.jpg"
                             alt="Ghazali Premier Schools Logo"
                             width={50}
                             height={50}
